@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/CartIcon';
-import { CartDropdown } from '../cart-dropdown/CartDropdown';
+import CartDropdown from '../cart-dropdown/CartDropdown';
 import PropTypes from 'prop-types';
 
 import './Header.scss';
