@@ -6,11 +6,16 @@ import PropTypes from 'prop-types';
 
 import './CartIcon.scss';
 
-const CartIcon = ({ toggleCartHidden }) => {
+const CartIcon = ({ toggleCartHidden, cartItems }) => {
+  const itemCount = cartItems.reduce(
+    (acumalatedQuantity, cartItem) => acumalatedQuantity + cartItem.quantity,
+    0
+  );
+
   return (
     <div className='cart-icon' onClick={toggleCartHidden}>
       <ShoppingIcon className='shopping-icon' />
-      <span className='item-count'>0</span>
+      <span className='item-count'> {itemCount}</span>
     </div>
   );
 };
@@ -24,4 +29,8 @@ CartIcon.propTypes = {
   toggleCartHidden: PropTypes.func.isRequired,
 };
 
-export default connect(null, { toggleCartHidden })(CartIcon);
+const mapStateToProps = ({ cart: { cartItems } }) => ({
+  cartItems,
+});
+
+export default connect(mapStateToProps, { toggleCartHidden })(CartIcon);
