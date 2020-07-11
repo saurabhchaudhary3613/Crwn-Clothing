@@ -1,14 +1,11 @@
 import React from 'react';
-
-import SHOP_DATA from './shop.data.js';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import CollectionPreview from '../../components/collection-preview/CollectionPreview';
 
-const ShopPage = () => {
-  const collections = SHOP_DATA;
-
+const ShopPage = ({ collections }) => {
   console.log('collections', collections);
-
   return (
     <div className='shop-page'>
       {collections.map(({ id, ...otherCollectionProps }) => (
@@ -17,5 +14,10 @@ const ShopPage = () => {
     </div>
   );
 };
-
-export default ShopPage;
+ShopPage.propTypes = {
+  collections: PropTypes.array.isRequired,
+};
+const mapStateToProps = (state) => ({
+  collections: state.shop.collections,
+});
+export default connect(mapStateToProps)(ShopPage);
